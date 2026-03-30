@@ -66,10 +66,12 @@ Course_Work_2
 │   ├── aeroplane.py        # Класс Aeroplane и методы преобразования данных
 │   ├── storage.py          # Абстрактный класс и реализация JSON-хранилища
 │   └── user_interface.py   # Функция взаимодействия с пользователем
-└── tests/                  # Модульные тесты (опционально)
-    ├── test_aeroplane.py
-    ├── test_api.py
-    └── test_storage.py
+└── tests/                  # Модульные тесты
+│   ├── test_aeroplane.py
+│   ├── test_api.py
+│   └── test_storage.py
+└── data/                  # Папка для хранения данных
+    └── aeroplanes.json    # Файл с данными JSON
 ```
 
 ## Описание модулей
