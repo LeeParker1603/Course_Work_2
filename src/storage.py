@@ -1,8 +1,10 @@
 import json
 import os
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any, Optional
+from typing import Any, Dict, List
+
 from src.aeroplane import Aeroplane
+
 
 class BaseStorage(ABC):
     """Абстрактный класс для хранилища"""
@@ -36,7 +38,7 @@ class JSONStorage(BaseStorage):
         # Создаем папку data, если её нет
         os.makedirs(os.path.dirname(self.filename), exist_ok=True)
 
-    def _load(self) -> List[Dict]:
+    def _load(self) -> List[Dict[str, Any]]:
         """Загрузить данные из файла"""
         try:
             with open(self.filename, "r", encoding="utf-8") as f:
@@ -44,12 +46,12 @@ class JSONStorage(BaseStorage):
         except (FileNotFoundError, json.JSONDecodeError):
             return []
 
-    def _save(self, data: List[Dict]) -> None:
+    def _save(self, data: List[Dict[str, Any]]) -> None:
         """Сохранить данные в файл"""
         with open(self.filename, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 
-    def _to_dict(self, aeroplane: Aeroplane) -> Dict:
+    def _to_dict(self, aeroplane: Aeroplane) -> Dict[str, Any]:
         """Преобразовать объект в словарь"""
         return {
             "callsign": aeroplane.callsign,
@@ -59,10 +61,10 @@ class JSONStorage(BaseStorage):
             "icao24": aeroplane.icao24,
             "time_position": aeroplane.time_position,
             "longitude": aeroplane.longitude,
-            "latitude": aeroplane.latitude
+            "latitude": aeroplane.latitude,
         }
 
-    def _from_dict(self, data: Dict) -> Aeroplane:
+    def _from_dict(self, data: Dict[str, Any]) -> Aeroplane:
         """Восстановить объект из словаря"""
         return Aeroplane(
             callsign=data["callsign"],
@@ -72,7 +74,7 @@ class JSONStorage(BaseStorage):
             icao24=data["icao24"],
             time_position=data["time_position"],
             longitude=data["longitude"],
-            latitude=data["latitude"]
+            latitude=data["latitude"],
         )
 
     def add_aeroplane(self, aeroplane: Aeroplane) -> None:

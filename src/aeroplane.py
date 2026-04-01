@@ -1,4 +1,5 @@
-from typing import Optional, List, Any
+from typing import Any, List, Optional
+
 
 class Aeroplane:
     """
@@ -39,8 +40,10 @@ class Aeroplane:
         self.latitude = latitude
 
     def __repr__(self) -> str:
-        return (f"Aeroplane(callsign={self.callsign}, country={self.origin_country}, "
-                f"velocity={self.velocity}, altitude={self.altitude})")
+        return (
+            f"Aeroplane(callsign={self.callsign}, country={self.origin_country}, "
+            f"velocity={self.velocity}, altitude={self.altitude})"
+        )
 
     def __lt__(self, other: "Aeroplane") -> bool:
         """Сравнение по скорости (меньше)"""
@@ -115,14 +118,16 @@ class Aeroplane:
             if velocity is not None:
                 velocity = velocity * 3.6  # м/с -> км/ч
 
-            aeroplanes.append(cls(
-                callsign=callsign,
-                origin_country=origin_country,
-                velocity=velocity,
-                altitude=altitude,
-                icao24=icao24,
-                time_position=time_position,
-                longitude=longitude,
-                latitude=latitude
-            ))
+            aeroplanes.append(
+                cls(
+                    callsign=callsign,
+                    origin_country=origin_country,
+                    velocity=velocity,
+                    altitude=altitude,
+                    icao24=icao24,
+                    time_position=time_position,
+                    longitude=longitude,
+                    latitude=latitude,
+                )
+            )
         return aeroplanes

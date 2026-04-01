@@ -1,7 +1,8 @@
-from src.api import OpenSkyAPI
 from src.aeroplane import Aeroplane
+from src.api import OpenSkyAPI
 from src.storage import JSONStorage
 from src.user_interface import user_interaction
+
 
 def main():
     api = OpenSkyAPI()
@@ -20,5 +21,6 @@ def main():
     storage = JSONStorage()
     user_interaction(aeroplanes, storage)
 
-if __name__ == '__main__':
-   main()
+
+if __name__ == "__main__":
+    main()

@@ -1,6 +1,8 @@
 from typing import List
+
 from src.aeroplane import Aeroplane
 from src.storage import JSONStorage
+
 
 def user_interaction(aeroplanes: List[Aeroplane], storage: JSONStorage) -> None:
     """
@@ -35,11 +37,7 @@ def user_interaction(aeroplanes: List[Aeroplane], storage: JSONStorage) -> None:
                     print("Нет данных о высоте ни для одного самолета.")
                     continue
 
-                sorted_by_alt = sorted(
-                    aeroplanes,
-                    key=lambda p: (p.altitude is None, p.altitude),
-                    reverse=True
-                )
+                sorted_by_alt = sorted(aeroplanes, key=lambda p: (p.altitude is None, p.altitude), reverse=True)
                 top_n = sorted_by_alt[:n]
                 print(f"\nТоп {n} самолетов по высоте:")
                 for i, plane in enumerate(top_n, 1):
@@ -56,7 +54,10 @@ def user_interaction(aeroplanes: List[Aeroplane], storage: JSONStorage) -> None:
             filtered = [p for p in aeroplanes if p.origin_country in countries]
             print(f"\nНайдено самолетов: {len(filtered)}")
             for plane in filtered:
-                print(f"  {plane.callsign} ({plane.origin_country}) - скорость: {plane.velocity:.1f} км/ч, высота: {plane.altitude if plane.altitude is not None else 'нет данных'} м")
+                print(
+                    f"  {plane.callsign} ({plane.origin_country}) - скорость: {plane.velocity:.1f} км/ч, "
+                    f"высота: {plane.altitude if plane.altitude is not None else 'нет данных'} м"
+                )
 
         elif choice == "4":
             if not aeroplanes:
@@ -64,7 +65,10 @@ def user_interaction(aeroplanes: List[Aeroplane], storage: JSONStorage) -> None:
             else:
                 print("\nВсе самолеты:")
                 for plane in aeroplanes:
-                    print(f"  {plane.callsign} ({plane.origin_country}) - скорость: {plane.velocity:.1f} км/ч, высота: {plane.altitude if plane.altitude is not None else 'нет данных'} м")
+                    print(
+                        f"  {plane.callsign} ({plane.origin_country}) - скорость: {plane.velocity:.1f} км/ч, "
+                        f"высота: {plane.altitude if plane.altitude is not None else 'нет данных'} м"
+                    )
 
         elif choice == "5":
             print("Выход из программы.")
